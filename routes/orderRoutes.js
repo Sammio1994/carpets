@@ -1,7 +1,7 @@
 // routes/orderRoutes.js
 const express = require('express');
 const router = express.Router();
-const Order = require('./models/Order.js');
+const Order = require('../models/Order.js');
 
 // Handle new order (sample request)
 router.post('/', async (req, res) => {
