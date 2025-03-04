@@ -3,6 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+const productRoutes = require('./routes/productRoutes.js');
+const imageRoutes = require('./routes/imageRoutes.js'); 
+
+dotenv.config();
 
 // Initialize app
 const app = express();
@@ -10,6 +14,8 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use('https://unsplash.com/s/photos/carpets', imageRoutes);
 
 // Connect to MongoDB
 // mongoose.connect(process.env.MONGO_URI);
@@ -24,9 +30,9 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 // Routes
-app.use('/products', require('../carpets-backend/routes/productRoutes.js'));
-app.use('/contact', require('../carpets-backend/routes/contactRoutes.js'));
-app.use('/order', require('../carpets-backend/routes/orderRoutes.js'));
+app.use('https://unsplash.com/s/photos/carpets', productRoutes);
+app.use('/contact', require('./routes/contactRoutes.js'));
+app.use('/order', require('./routes/orderRoutes.js'));
 
 // Start server
 const PORT = process.env.PORT || 5000;
