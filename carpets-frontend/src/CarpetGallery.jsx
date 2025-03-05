@@ -7,21 +7,22 @@ const CarpetGallery = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://unsplash.com/s/photos/carpets', {
-    params: { query: 'carpets' },
-    headers: {
-      Authorization: `lsA3B_jAyBXVwPBE_S5_CWmmYyvmEaQdUbsRZ9Dmzwo`,  // Replace with your access key
-    },
-  })
-      .then((response) => {
-        setImages(response.data.results);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching images:', error);
-        setLoading(false);
-      });
-  }, []);
+    // Unsplash API request to fetch carpet images
+    axios.get('https://api.unsplash.com/search/photos', {
+      params: { query: 'carpets' },
+      headers: {
+        Authorization: `Client-ID lsA3B_jAyBXVwPBE_S5_CWmmYyvmEaQdUbsRZ9Dmzwo`,  // Replace with your actual access key
+      },
+    })
+    .then((response) => {
+      setImages(response.data.results);  // Store the API results in the state
+      setLoading(false);  // Turn off the loading state once data is fetched
+    })
+    .catch((error) => {
+      console.error('Error fetching images:', error);  // Handle errors
+      setLoading(false);
+    });
+  }, []);  // Empty dependency array to run this effect only once on component mount
 
   return (
     <div>
@@ -31,8 +32,8 @@ const CarpetGallery = () => {
         <div>
           {images.map((image) => (
             <div key={image.id}>
-              <img src={image.urls.small} alt={image.description} />
-              <p>{image.description}</p>
+              <img src={image.urls.small} alt={image.alt_description} />
+              <p>{image.alt_description}</p>
             </div>
           ))}
         </div>
