@@ -11,18 +11,19 @@ const CarpetGallery = () => {
     axios.get('https://api.unsplash.com/search/photos', {
       params: { query: 'carpets' },
       headers: {
-        Authorization: `Client-ID lsA3B_jAyBXVwPBE_S5_CWmmYyvmEaQdUbsRZ9Dmzwo`,  // Replace with your actual access key
+        Authorization: `Client-ID ${process.env.REACT_APP_KEY}`,  // Use your API key stored in the environment variable
       },
     })
     .then((response) => {
-      setImages(response.data.results);  // Store the API results in the state
-      setLoading(false);  // Turn off the loading state once data is fetched
+      // Handle the successful response here
+      setImages(response.data.results);
+      setLoading(false);
     })
     .catch((error) => {
-      console.error('Error fetching images:', error);  // Handle errors
+      console.error('Error fetching images:', error);
       setLoading(false);
     });
-  }, []);  // Empty dependency array to run this effect only once on component mount
+  }, []);
 
   return (
     <div>
