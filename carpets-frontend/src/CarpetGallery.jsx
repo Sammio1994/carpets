@@ -7,9 +7,14 @@ const CarpetGallery = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/products/images')
+    axios.get('https://unsplash.com/s/photos/carpets', {
+    params: { query: 'carpets' },
+    headers: {
+      Authorization: `lsA3B_jAyBXVwPBE_S5_CWmmYyvmEaQdUbsRZ9Dmzwo`,  // Replace with your access key
+    },
+  })
       .then((response) => {
-        setImages(response.data);
+        setImages(response.data.results);
         setLoading(false);
       })
       .catch((error) => {
