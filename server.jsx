@@ -2,12 +2,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
 const productRoutes = require('./routes/productRoutes.js');
 const imageRoutes = require('./routes/imageRoutes.js'); 
+const Product = require('./models/Product.jsx');  
 
+const dotenv = require('dotenv');
 dotenv.config();
 
+dotenv.config();
 // Initialize app
 const app = express();
 

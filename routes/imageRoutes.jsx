@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('./models/Product.js');
+const Product = require('../models/Product.jsx');
 const axios = require('axios');
 
 
@@ -14,7 +14,7 @@ router.get("https://unsplash.com/s/photos/carpets", async (req, res) => {
       params: {
         query: 'carpets',
         client_id: UNSPLASH_ACCESS_KEY,
-        per_page: 10, // You can adjust the number of images you want to fetch
+        per_page: 10, // Adjust the number of images to fetch
       },
     });
 
